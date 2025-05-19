@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Tasks</h2>
+<a href="{% url 'task_create' %}">Add Task</a>
+<ul>
+  {% for task in tasks %}
+    <li>
+      <strong>{{ task.content }}</strong>
+      {% if task.deadline %}<br>Deadline: {{ task.deadline }}{% endif %}<br>
+      Tags: {{ task.tags.all|join:", " }}<br>
+      Status: {% if task.is_done %}✅ Done{% else %}❌ Not Done{% endif %}<br>
+      <a href="{% url 'task_update' task.pk %}">Edit</a> |
+      <a href="{% url 'task_delete' task.pk %}">Delete</a> |
+      <a href="{% url 'task_toggle_status' task.pk %}">{% if task.is_done %}Undo{% else %}Complete{% endif %}</a>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}
