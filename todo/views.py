@@ -5,7 +5,6 @@ from .models import Task, Tag
 from .forms import TaskForm, TagForm
 
 
-# Home page — просто редірект на task list (якщо хочеш, можна зробити окремим)
 def home(request):
     from django.shortcuts import redirect
 
